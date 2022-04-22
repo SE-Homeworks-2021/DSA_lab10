@@ -61,30 +61,41 @@ public class Tree2 extends Tree{
     public void breadthFirstTraversal(int p) {
 
         ArrayList<Integer> list=new ArrayList<Integer>();
-
+        ArrayList<Integer> left=new ArrayList<Integer>();
+        ArrayList<Integer> right=new ArrayList<Integer>();
 
         list.add(T[p]);
+        int i = 0;
 
-        for (int i = 0; i < getsize()*2+2 ; i = i+1)
+        int l = i;
+        int r = i;
+
+        for (; l < getsize()*2 || r < getsize()*2 ; i = i+1, l=left.get(left.size() - 1), r=right.get(right.size() - 1))
         {
             if (hasLeftChild(i))
             {
                 list.add(T[2 * i + 1]);
-
+                left.add(2 * i + 1);
             }
 
             if (hasRightChild(i))
             {
                 list.add(T[2 * i + 2]);
-
+                right.add(2 * i + 2);
             }
 
+            System.out.println(list);
         }
 
-        for (int i : list) {                        // just print
-            System.out.print(i + " ");
+        for (int j : list) {                        // just print
+            System.out.print(j + " ");
         }
 
+//        System.out.println();
+//        System.out.println(left);
+//        System.out.println(right);
+//
+//        System.out.println();
     }
 }
 
