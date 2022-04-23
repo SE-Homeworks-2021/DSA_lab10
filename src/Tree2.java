@@ -77,7 +77,7 @@ public class Tree2 extends Tree{
             return;
         }
 
-        while (queries.getLast() < getsize()*2+2)
+        while ( queries.isEmpty() == false )
         {
 
             if (hasLeftChild(queries.getFirst()))
