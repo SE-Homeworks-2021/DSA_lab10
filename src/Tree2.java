@@ -63,36 +63,28 @@ public class Tree2 extends Tree{
     //4. Breadth-first
     public void breadthFirstTraversal(int p) {
 
-        ArrayList<Integer> list=new ArrayList<Integer>();
-        Deque<Integer> queries = new ArrayDeque<>();
+        ArrayList<Integer> list= new ArrayList<>();
+        Deque<Integer> queue = new ArrayDeque<>();
 
-        if (isEmpty() == false)
-        {
-            list.add(T[p]);
-            queries.add(p);
-        }
+        list.add(T[p]);     //root
+        queue.add(p);       //root
 
-        else
-        {
-            return;
-        }
-
-        while ( queries.isEmpty() == false )
+        while ( queue.isEmpty() == false )
         {
 
-            if (hasLeftChild(queries.getFirst()))
+            if (hasLeftChild( queue.getFirst() ))       // Check the queue
             {
-                list.add(T[2 * queries.getFirst() + 1]);
-                queries.add(2 * queries.getFirst() + 1);
+                list.add(T[2 * queue.getFirst() + 1]);  //
+                queue.add(2 * queue.getFirst() + 1);    // It has child. So, add its child to queue.
             }
 
-            if (hasRightChild(queries.getFirst()))
+            if (hasRightChild( queue.getFirst() ))      // Check the queue
             {
-                list.add(T[2 * queries.getFirst() + 2]);
-                queries.add(2 * queries.getFirst() + 2);
+                list.add(T[2 * queue.getFirst() + 2]);
+                queue.add(2 * queue.getFirst() + 2);
             }
 
-            queries.removeFirst();
+            queue.removeFirst();        // The queue gets checked already then remove it.
 
         }
 
