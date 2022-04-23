@@ -1,4 +1,7 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Queue;
 
 public class Tree2 extends Tree{
     //Tree traversal algorithms
@@ -61,41 +64,43 @@ public class Tree2 extends Tree{
     public void breadthFirstTraversal(int p) {
 
         ArrayList<Integer> list=new ArrayList<Integer>();
-        ArrayList<Integer> left=new ArrayList<Integer>();
-        ArrayList<Integer> right=new ArrayList<Integer>();
+        Deque<Integer> queries = new ArrayDeque<>();
 
-        list.add(T[p]);
-        int i = 0;
-
-        int l = i;
-        int r = i;
-
-        for (; l < getsize()*2 || r < getsize()*2 ; i = i+1, l=left.get(left.size() - 1), r=right.get(right.size() - 1))
+        if (isEmpty() == false)
         {
-            if (hasLeftChild(i))
+            list.add(T[p]);
+            queries.add(p);
+        }
+
+        else
+        {
+            return;
+        }
+
+        while (queries.getLast() < getsize()*2+2)
+        {
+
+            if (hasLeftChild(queries.getFirst()))
             {
-                list.add(T[2 * i + 1]);
-                left.add(2 * i + 1);
+                list.add(T[2 * queries.getFirst() + 1]);
+                queries.add(2 * queries.getFirst() + 1);
             }
 
-            if (hasRightChild(i))
+            if (hasRightChild(queries.getFirst()))
             {
-                list.add(T[2 * i + 2]);
-                right.add(2 * i + 2);
+                list.add(T[2 * queries.getFirst() + 2]);
+                queries.add(2 * queries.getFirst() + 2);
             }
 
-            System.out.println(list);
+            queries.removeFirst();
+
         }
 
         for (int j : list) {                        // just print
             System.out.print(j + " ");
         }
 
-//        System.out.println();
-//        System.out.println(left);
-//        System.out.println(right);
-//
-//        System.out.println();
+        System.out.println();
     }
 }
 
